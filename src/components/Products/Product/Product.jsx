@@ -11,7 +11,6 @@ import {
 import React from "react";
 
 const Product = ({ product }) => {
-  console.log(product)
   return (
     <Card sx={{ maxWidth: '100%' }}>
       <CardMedia
