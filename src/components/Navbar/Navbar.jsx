@@ -3,7 +3,7 @@ import { AppBar, Badge, Box, IconButton, Toolbar, Typography } from '@mui/materi
 import React from 'react';
 import Logo from '../../assets/MarketplaceLogo.png'
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
   return (
     <div>
         <AppBar position='relative' color='inherit' sx={{marginBottom: 1}}>
@@ -15,7 +15,7 @@ const Navbar = () => {
                 <Box sx={{ display: 'flex', flexGrow: 1}}/>
                 <Box>
                     <IconButton aria-label='Show cart items' color='inherit'>
-                        <Badge badgeContent={2} color='secondary'>
+                        <Badge badgeContent={totalItems} color='secondary'>
                             <ShoppingCart/>
                         </Badge>
                     </IconButton>

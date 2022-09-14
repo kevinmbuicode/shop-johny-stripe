@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
   return (
     <Card sx={{ maxWidth: '100%' }}>
       <CardMedia
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
         <Typography dangerouslySetInnerHTML={{ __html: product.description}} variant="body2" color="text.secondary" />
       </CardContent>
       <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'flex-end'}}>
-        <IconButton aria-label="Add to Cart">
+        <IconButton aria-label="Add to Cart" onClick={() => onAddToCart(product.id, 1)}>
           <AddShoppingCart />
         </IconButton>
       </CardActions>

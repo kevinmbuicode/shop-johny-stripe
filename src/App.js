@@ -13,9 +13,14 @@ function App() {
     setProducts(data)
   }
 
-  // Cart items
+  // Cart items. data retrieved includes subtotal and line items
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve())
+  }
+
+  // async to accept 2 parameters and add the item to the cart
+  const handleAddToCart = async (productId, quantity) => {
+    await commerce.cart.add(productId, quantity).then((response) => setCart(response));
   }
 
   useEffect(() => {
@@ -25,11 +30,10 @@ function App() {
 
   console.log(cart)
 
-
   return (
     <div className="App">
-      <Navbar/>
-      <Products products={products}/>
+      <Navbar totalItems={cart.total_items}/>
+      <Products products={products} onAddToCart={handleAddToCart}/>
     </div>
   );
 }
