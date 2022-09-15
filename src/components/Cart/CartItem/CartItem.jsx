@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 
 const CartItem = ({ item }) => {
-  console.log(item);
   return (
     <Card>
       <CardMedia
@@ -27,7 +26,7 @@ const CartItem = ({ item }) => {
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center", gap: 1}}>
         <Box sx={{ display: "flex", gap: 1}}>
-          <Button size="small" variant="contained" fontWeight={500}> - </Button>
+          <Button size="small" variant="contained"> - </Button>
           <Typography>{item.quantity}</Typography>
           <Button size="small" variant="contained"> + </Button>
         </Box>
