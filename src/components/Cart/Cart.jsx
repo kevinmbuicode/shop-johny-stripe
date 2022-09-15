@@ -1,4 +1,5 @@
-import { Box, Button, Container, Grid, styled, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import CartItem from './CartItem/CartItem';
 import React from "react";
 
 const Cart = ({ cart }) => {
@@ -18,9 +19,7 @@ const Cart = ({ cart }) => {
         <Grid container spacing={3}>
           {cart.line_items.map((item) => (
             <Grid item xs={12} sm={4} key={item.id}>
-              <div>
-                {item.name}:{item.price.formatted_with_symbol}
-              </div>
+              <CartItem item={item}/>
             </Grid>
           ))}
         </Grid>
@@ -53,7 +52,7 @@ const Cart = ({ cart }) => {
   return (
     <Container>
       <Box sx={{ marginBottom: '5%' }} />
-      <Typography variant="h4">Your Shopping Cart</Typography>
+      <Typography variant="h4" gutterBottom>Your Shopping Cart</Typography>
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );

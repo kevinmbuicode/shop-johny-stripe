@@ -12,7 +12,7 @@ import React from "react";
 
 const Product = ({ product, onAddToCart }) => {
   return (
-    <Card sx={{ maxWidth: '100%' }}>
+    <Card sx={{ maxWidth: '100%'}}>
       <CardMedia
         component="img"
         sx={{ height: 200}}
