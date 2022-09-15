@@ -9,7 +9,9 @@ import {
   Box,
 } from "@mui/material";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
+    console.log(item.id)
+    console.log(item.quantity)
   return (
     <Card>
       <CardMedia
@@ -26,11 +28,11 @@ const CartItem = ({ item }) => {
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center", gap: 1}}>
         <Box sx={{ display: "flex", gap: 1}}>
-          <Button size="small" variant="contained"> - </Button>
+          <Button size="small" variant="contained" onClick={() => onUpdateCartQty(item.id, item.quantity - 1)}> - </Button>
           <Typography>{item.quantity}</Typography>
-          <Button size="small" variant="contained"> + </Button>
+          <Button size="small" variant="contained" onClick={() => onUpdateCartQty(item.id, item.quantity + 1)}> + </Button>
         </Box>
-        <Button variant="contained" size="small" color="error">Remove</Button>
+        <Button variant="contained" size="small" color="error" onClick={()=> onRemoveFromCart(item.id)}>Remove</Button>
       </CardActions>
     </Card>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "./library/commerce";
-import { Products, Navbar, Cart } from "./components";
+import { Products, Navbar, Cart, Checkout } from "./components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -25,11 +25,30 @@ function App() {
       .then((response) => setCart(response));
   };
 
+  // Add to Cart
+  const handleUpdateCartQty = async (productId, quantity) => {
+    await commerce.cart
+      .update(productId, { quantity })
+      .then((response) => setCart(response));
+  };
+
+  // Remove from Cart
+  const handleRemoveFromCart = async (productId) => {
+    await commerce.cart.remove(productId).then((response) => setCart(response));
+  };
+
+  // Empty Cart
+  const handleEmptyCart = async () => {
+    const { cart } = await commerce.cart.empty();
+    setCart(cart);
+  };
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
 
+  console.log(cart);
 
   return (
     <BrowserRouter>
@@ -42,7 +61,18 @@ function App() {
               <Products products={products} onAddToCart={handleAddToCart} />
             }
           />
-          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cart={cart}
+                handleEmptyCart={handleEmptyCart}
+                handleRemoveFromCart={handleRemoveFromCart}
+                handleUpdateCartQty={handleUpdateCartQty}
+              />
+            }
+          />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </BrowserRouter>
