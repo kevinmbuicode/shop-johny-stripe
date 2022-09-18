@@ -1,15 +1,3 @@
-// import React from 'react';
-
-// const PaymentForm = () => {
-    
-//     return (
-//       <>
-//         Payment
-//       </>
-//     );
-//   };
-  
-// export default PaymentForm;
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
