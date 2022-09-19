@@ -58,7 +58,7 @@ export default function PaymentForm() {
             required
             id="phone"
             label="MPESA phone number"
-            helperText="the phone number you will use for payment"
+            helperText="the phone number you will use for payment if you are not using card"
             fullWidth
             autoComplete="cc-phone"
             variant="standard"

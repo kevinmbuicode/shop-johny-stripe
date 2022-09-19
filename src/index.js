@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import CartContext from "./Context/CartContext";
+import ShippingState from "./Context/ShippingContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CartContext>
+    <ShippingState>
       <App />
-    </CartContext>
+    </ShippingState>
   </React.StrictMode>
 );

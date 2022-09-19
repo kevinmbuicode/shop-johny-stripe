@@ -48,7 +48,6 @@ function App() {
     fetchCart();
   }, []);
 
-  console.log(cart);
 
   return (
     <BrowserRouter>
