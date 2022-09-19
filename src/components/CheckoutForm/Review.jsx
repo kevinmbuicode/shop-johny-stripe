@@ -1,33 +1,11 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { commerce } from '../../library/commerce'
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -38,23 +16,34 @@ const payments = [
 ];
 
 export default function Review() {
+  const [cart, setCart] = useState({})
+  const fetchCart = async () => {
+    setCart(await commerce.cart.retrieve());
+  };
+
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
+        {cart.line_items.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <img src={product.image.url} height="40" width="40" alt='product_image'/>
+            <ListItemText primary={product.name} secondary={product.name} />
+            <Typography variant="body2">{product.line_total.formatted_with_symbol}</Typography>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {cart.subtotal.formatted_with_symbol}
           </Typography>
         </ListItem>
       </List>
@@ -77,7 +66,7 @@ export default function Review() {
                   <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{payment.name}</Typography>
                 </Grid>
               </React.Fragment>
             ))}
