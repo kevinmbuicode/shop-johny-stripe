@@ -9,7 +9,7 @@ export default function PaymentForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Payment method. Use Card or Mpesa
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
@@ -50,6 +50,17 @@ export default function PaymentForm() {
             helperText="Last three digits on signature strip"
             fullWidth
             autoComplete="cc-csc"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="phone"
+            label="MPESA phone number"
+            helperText="the phone number you will use for payment"
+            fullWidth
+            autoComplete="cc-phone"
             variant="standard"
           />
         </Grid>

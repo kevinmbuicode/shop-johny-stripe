@@ -13,31 +13,31 @@ function App() {
     setProducts(data);
   };
 
-  // Cart items. data retrieved includes subtotal and line items
+  // Cart items. Data retrieved includes subtotal and line items
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve());
   };
 
-  // async to accept 2 parameters and add the item to the cart
+  // async to accept 2 parameters and add the item to the cart //Working successfully
   const handleAddToCart = async (productId, quantity) => {
     await commerce.cart
       .add(productId, quantity)
       .then((response) => setCart(response));
   };
 
-  // Add to Cart
+  // Add to Cart //Working successfully
   const handleUpdateCartQty = async (productId, quantity) => {
     await commerce.cart
       .update(productId, { quantity })
       .then((response) => setCart(response));
   };
 
-  // Remove from Cart
+  // Remove from Cart //Working successfully
   const handleRemoveFromCart = async (productId) => {
     await commerce.cart.remove(productId).then((response) => setCart(response));
   };
 
-  // Empty Cart
+  // Empty Cart //Working successfully
   const handleEmptyCart = async () => {
     const { cart } = await commerce.cart.empty();
     setCart(cart);
