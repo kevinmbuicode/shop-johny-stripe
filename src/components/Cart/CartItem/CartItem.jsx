@@ -10,8 +10,7 @@ import {
 } from "@mui/material";
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
-    console.log(item.id)
-    console.log(item.quantity)
+    
   return (
     <Card>
       <CardMedia
