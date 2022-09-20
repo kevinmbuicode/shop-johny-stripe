@@ -7,14 +7,10 @@ import Grid from '@mui/material/Grid';
 import { commerce } from '../../library/commerce'
 import { ShippingState } from '../../Context/ShippingContext';
 
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+
 
 export default function Review() {
+  const [total, setTotal] = useState("1 sec...")
   const [cart, setCart] = useState({})
   const { firstName, address, cardNumber} = ShippingState();
   
@@ -46,7 +42,7 @@ export default function Review() {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-           1223 {/* {cart?.subtotal.formatted_with_symbol} */}
+           {cart?.subtotal == null ? total : cart?.subtotal.formatted_with_symbol}
           </Typography>
         </ListItem>
       </List>
